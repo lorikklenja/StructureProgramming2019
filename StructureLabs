@@ -1,0 +1,1040 @@
+2) Flow control structures 
+
+1.Palindrome
+Write a program that for a three digit number read from SI will check if it is palindrome or not, and will print out an appropriate message. The message is "Palindrome" if it is, and "Not palindrome" if it's not. If the number is not three digit number, write the message "Wrong input".
+  
+  #include <stdio.h>
+  int main() {
+      int a,b,c=0;
+         scanf("%d" , &a);
+      if (a>99&&a<1000)
+      {
+      b=a;
+         while (b!=0)
+         {
+         c=c*10;
+         c=c+b%10;
+         b=b/10;
+         }
+          if (a==c)
+              printf("Palindrome");
+          else {
+          printf("Not palindrome");
+          }
+      }
+      else printf("Wrong input"); 
+  return 0;
+  }
+================================================================
+
+2. Phone subscriber
+
+
+Write a program that reads mobile phone number from SI in the following format XXYYYZZZ (ex. 71298486). The program should print the number in the following format: XXX/YYY-ZZZ (ex. 071/298-486) and should print the name of the operator following these rules:
+
+    070/071/072 - T-mobile,
+    075/076/077/078 - A1
+    079 - LycaMobile
+
+
+  #include <stdio.h>
+  int main () {
+      int number;
+      scanf("%d" , &number);
+      printf("0%d/%03d-%03d", number/1000000,(number/1000)%1000,number%1000);
+      number/=1000000;
+      int x = number;
+      if (x == 71 || x == 72 || x == 70)
+          printf(" T-mobile");
+      else if (x == 79) 
+          printf(" LycaMobile");
+       else 
+          printf(" A1");
+          return 0;
+  } 
+ =================================================================
+ 
+ 
+ 
+3) Loops
+
+ 1.Basic Task
+ A natural number n is read from standard input. After that n numbers are being read as well from standard input.
+
+Your task is to print to standard output only the two-digit even numbers.
+ 
+ #include <stdio.h>
+int main () {
+
+int n, num, i;
+    scanf("%d" , &n);
+    for (i=0; i<n; i++)
+    {
+    scanf("%d" , &num);
+        
+        if (num > 9&&num<100&&num%2==0)
+            printf("%d\n" , num);
+    }
+    return 0;
+}
+
+
+==========================================================================
+
+ 2.Grade
+ 
+
+From SI the number of students N, and then N pairs of integers are read, where the first number is the students' points, and the second is the max. points. Write a program where for each pair (points, max points), will print the student's success in percentage and his grade following these rules:
+
+    if the student has 90% or more - "10".
+    if the student has 80% or more - "9".
+    if the student has 70% or more - "8".
+    if the student has 60% or more - "7".
+    if the student has 50% or more - "6".
+    If the student has less than 50% print "FAIL".
+
+
+ 
+  #include <stdio.h>
+int main () {
+    
+    float y, points;
+    int i, max, n;
+	scanf("%d" , &n);
+    for (i=0; i<n; i++) {
+        scanf("%f %d", &points, &max);
+    	
+      y=(points/max)*100;
+        {
+        if ((y>=90)&&(y <= 100)) 
+               printf("\n%.2f 10" , y);
+    	
+			if (y>= 80 && y < 90)
+               printf("\n%.2f 9" , y);    
+    		
+        		if (y>= 70 && y < 80)
+               printf("\n%.2f 8" , y);  
+        		if (y>=60 && y < 70)
+               printf("\n%.2f 7" , y);   
+        		if (y>=50 && y < 60)
+               printf("\n%.2f 6" , y);
+            	if (y<50)
+                    printf("\n%.2f FAIL" , y);
+        }}
+    return 0;
+}
+===================================================================
+
+3. Progression // not solved
+A natural number n is read from SI. After that n sequences of numbers are being read as well from SI. Each sequence is defined with:
+
+    number M (the count of numbers in the sequence)
+    M numbers
+
+Your task is to print on standard output, for each sequence one of the three following messages:
+
+    ARITHMETIC PROGRESSION
+    GEOMETRIC PROGRESSION
+    THE SEQUENCE IS NOT A PROGRESSION
+    BOTH ARITHMETIC AND GEOMETRIC PROGRESSION
+
+A sequence of number is an arithmetic progression if the difference between any number and its predecessor is always the same.
+
+1 2 3 4 5 6 7 8 .. is an arithmetic progression.
+
+A sequence of number is a geometric progression if the quotient between any number and its predecessor is always the same.
+
+1 2 4 8 16 32 ... is a geometric progression. 
+  
+  #include <stdio.h>
+
+int main () {
+    int x, y, i;
+    scanf("%d", &x);
+    
+    for (i=0; i<x; i++) {
+	scanf("%d" ,&y);
+        if (i==(i+1))
+            i++;
+		printf("ARITHMETIC PROGRESSION\n" , i);
+        
+    }  	
+    return 0;
+}
+
+=============================================================
+
+4.Number Containing M
+
+
+Three number n, m and k are read from SI.
+
+You task is to write a program that prints the first ten numbers in descending order from the interval from 0 - n, that contain the digit m, k times.
+
+If there are no such number, print a message WRONG PARAMETERS.
+
+
+#include <stdio.h>
+int main () {
+    
+    int n, m,k ,i, d, counter=0, t=0;
+    scanf("%d %d %d" , &n, &m, &k);
+    
+    for (i=n; i>0; i--)
+    {
+        d=i;
+        while (d!=0) {
+        if(d%10==m)
+            t++;
+            d/=10;
+            
+        }
+        if (t==k) {
+            printf("%d\n" , i);
+             counter++;
+        }
+        t=0;
+        if (counter==10)
+            break;
+    }
+    if (counter == 0)
+        printf("WRONG PARAMETERS\n");
+    return 0;
+    }
+
+
+========================================================
+
+PARTIAL EXAM TASKS
+
+1. Problem 1
+A natural number 'N' is read from the standard input. Then, N pairs of integers (air measurements of PM10 and PM2.5 particles from the corresponding measuring station for a given municipality) are read. Your task is to calculate the mean value of PM10 and PM2.5 particles only from those measuring stations that are in use. One measuring station is considered to be out of use if it sends a pair of measurements -1 -1.
+
+Note: The result should be printed with 2 decimal places.
+
+#include <stdio.h>
+	int main()
+    {
+    
+    	int n,x,y,sumpm1=0,sumpm2=0,good,i,pm1,pm2,sum1=0,sum2=0;
+        float mean1,mean2;
+        scanf("%d",&n);
+        for (i=0; i<n; i++) {
+        
+        scanf("%d %d",&pm1,&pm2);
+             if (pm1 == -1&&pm2 == -1)
+                 continue;
+            sumpm1=sumpm1+pm1;
+            sumpm2=sumpm2+pm2;
+            good++;
+        }
+          
+        if(good==0) {
+       
+        	printf("PM10: Can not be calculated\n");
+            printf("PM2.5: Can not be calculated\n");
+        } else {
+        
+       	mean1=sumpm1/(good*1.0);
+        mean2=sumpm2/(good*1.0);
+        
+            printf("PM10: %.2f\nPM2.5: %.2f", mean1,mean2);
+        }
+    return 0;
+    }
+    
+===================================================
+
+Problem 2.
+An integer N is read from the standard input. Write a program that will print the first number greater than N that has equal number of odd and even digits (zero is counted as an even digit).
+
+#include <stdio.h>
+int main() {
+    int n,i,abc1,abc2,t,x;
+    scanf("%d",&n);
+    for (i=n+1;; i++) {
+        abc1=0;
+        abc2=0;
+        x=i;
+
+        while(x>0) {
+            t=x%10;
+            if(t%2==0 || t==0)
+                abc1++;
+
+            else
+                abc2++;
+            x=x/10;
+        }
+        if(abc1==abc2)
+            break;
+    }
+    printf("%d",i);
+    return 0;
+}
+
+===================================================================
+
+5. Arrays
+
+ 1. Basic task
+ 
+
+A number N and N elements of an array are read from SI.
+
+The array should be transformed in a new array where all the even elements should be increased by 1, and all the odd elements decreased by 1.
+
+The transformed array should be printed to standard output and all the elements of the array should be separated with space between them.
+
+
+ #include <stdio.h>
+int main () {
+int m[100],n,i;
+    scanf("%d",&n);
+    for (i=0; i<n; ++i) {
+    	scanf("%d",&m[i]);
+        
+    }
+    for (i=0; i<n; ++i) {
+    
+        if (m[i] % 2 == 0) {
+        	m[i]=m[i]+1;
+        }
+        else {
+        	m[i]=m[i]-1;
+        }
+    }
+for (i=0; i<n; ++i)
+    printf("%d ",m[i]);
+
+return 0;
+}
+==================================================================
+
+2.Array transform
+
+An array of integers A with length N (N<=100) is read from SI. Also, a integer K is read from SI.
+
+Your task is to transform the array into a new array where the elements less than K will be first, and after them the elements greater or equal than K should follow. The order of the elements should not be changed.
+
+Print the elements of the transformed array on standard output. All elements should be separated with a space between them.
+
+#include <stdio.h>
+#define MAX 101
+int main () {
+	int i,a[MAX],b[MAX],temp,k,p=0,n;
+    scanf("%d",&n);
+    for (i=0; i<n; ++i) {
+    	scanf("%d",&a[i]);
+    }
+    scanf("%d",&k);
+  
+    for (i=0; i<n; ++i) {
+        if(k > a[i]) {
+        	b[p]=a[i];
+            p++;
+        }
+    }
+        for (i=0; i<n; ++i) {
+            if (k <= a[i]) {
+            	b[p]=a[i];
+                p++;
+            } 
+        }
+        
+       
+    
+   for(i=0; i<n; ++i)
+    printf("%d ",b[i]);
+ return 0;   
+}
+
+=================================================================================
+
+3. Symmetric element //notsolved
+An integer N is read from SI. Afterwards N arrays of integers (with maximum length of 100 elements) are read from SI. For each array, firstly the size of the array is read, and then the elements of the array.
+
+Your task is to write a program which for each array read from SI will print the percentage of equal symmetric numbers in the array. Symmetric elements in an array are the first and the last, the second and element before the last, etc.
+
+If the array has odd number of elements, then the middle element is considered both symmetric and equal.
+
+#include <stdio.h>
+int main () {
+    int i,n,a[100];
+	scanf("%d",&n);
+    for (i=0; i<n; ++i) {
+    	scanf("%d",a[i]);      
+    }
+    
+}
+====================================================================================
+
+6) Matrices
+
+ 1.Positive neighbors
+ Write a program where a matrix A read from SI (the dimensions of the matrix are lower than 100) is transformed into a new matrix B. Each element of the new matrix B is sum of the positive neighbors (in horizontal and vertical direction) of the corresponding element of the matrix A. Print the new matrix B on the standard output.
+ 
+ #include <stdio.h>
+	int main () 
+    {
+    	int A[50][50],B[50][50],i,j,tempi,tempj,n1,n2,sum=0;
+        
+        scanf("%d %d",&n1,&n2);
+        for (i=0; i<n1; ++i) {
+            for (j=0; j<n2; ++j) {
+            	scanf("%d",&A[i][j]);
+            }
+        }
+        
+        for (i=0; i<n1; i++) {
+            for (j=0; j<n2; j++) {
+                sum=0;
+				if (A[i-1][j] > 0)
+                    sum=sum+A[i-1][j];
+                if (A[i+1][j] > 0)
+                    sum=sum+A[i+1][j];
+                if (A[i][j+1] > 0)
+                    sum=sum+A[i][j+1];
+                 if (A[i][j-1] > 0)
+                    sum=sum+A[i][j-1];
+             	B[i][j]=sum;
+            	
+                }
+            }
+        for (i=0; i<n1; ++i) {
+            for (j=0; j<n2; ++j) {
+            	printf("%d ",B[i][j]);
+              
+            }
+        	printf("\n");
+        }
+        
+    }
+    
+    =================================================================================
+    
+  2.Matrix transform
+  
+
+An integer n(n>2) is read from SI, as well as a square matrix A of order n, whose elements are also integers.
+
+Transform the matrix A in such a way that the elements ABOVE the main diagonal will take the value of the maximum element above the main diagonal, and the elements BELOW the main diagonal will take the value of the minimum element below the main diagonal.
+
+
+#include <stdio.h>
+int main() {
+ 
+ 
+    int n,i,j,lowest,highest,k,l;
+    scanf("%d",&n);
+    int a[n][n];
+    for(i=0; i<n; i++) {
+        for(j=0; j<n; j++) {
+            scanf("%d",&a[i][j]);
+        }
+ 
+    }
+   
+    highest = a[0][1];
+    lowest = a[1][0];
+   
+     for(i=0; i<n; i++) {
+        for(j=0; j<n; j++) {
+             
+            if(a[i][j] > highest&&i < j)
+               highest = a[i][j];
+        }
+ 
+    }
+   
+    for(i=0; i<n; i++) {
+        for(j=0; j<n; j++) {
+             
+            if(a[i][j] < lowest&&i > j)
+                lowest = a[i][j];
+        }
+ 
+    }
+    for(i=0;i<n;i++){
+        for(j=n;j>i;j--){
+        a[i][j]=highest;
+       
+        }
+    }
+    for(i=1;i<n;i++){
+    for(j=0;j<i;j++)
+        a[i][j]=lowest;
+    }
+    for(i=0;i<n;i++){
+        for(j=0;j<n;j++){
+        printf("%d ",a[i][j]);
+        }
+        printf("\n");
+}
+   
+   
+return 0;
+ 
+}
+
+
+======================================================================
+3.Binary matrix
+
+Read a square binary matrix from standard input. First the dimension N is entered (1 < N <= 100) and then the elements of the matrix (either 0 or 1) by rows.
+
+Write a program that will calculate the smallest number of necessary changes of the elements in order to transform the matrix to a zero diagonal symmetrical matrix. Any transition of an element from 0 to 1 or from 1 to 0 counts as a single change. After the conversion, all the elements of the main diagonal should be 0, and the matrix should be symmetrical with respect to the main diagonal. Print the minimal number of transitions required.
+
+#include <stdio.h>
+int main () {
+	int i,n,j,count;
+	scanf ("%d",&n);
+    int a[n][n];
+    count=0;
+    
+    	for(i=0; i<n; i++) {
+        	for(j=0; j<n; j++) {
+            	scanf("%d",&a[i][j]);
+        }
+    }
+    	    for(i=0; i<n; i++) {
+       			 for(j=0; j<n; j++) {
+            		if (a[i][j] == 1&&i == j)
+                        count++;
+        }
+ 
+    }
+    		for(i=0; i<n; i++) {
+       			 for(j=0; j<n; j++) {
+                     if (a[i][j] != a[i][j]) {
+                     	a[i][j] = a[j][i];
+                         count++;
+                     }
+                     }
+            }
+                       
+    printf("%d",&count);
+    return 0;
+}
+
+=============================================================================
+
+7) functions
+
+1. Array of even numbers
+
+
+Write a function allEvenNumbers that has two arguments: an array of integers array and an integer n that is the size of the array.
+
+The function should return 1 if all the numbers in the array array are even or 0 otherwise.
+
+**Do not change the code in the int main() function!**
+
+#include<stdio.h>
+
+
+int allEvenNumbers(int array[100][100], int n) {
+    int i,j;
+    for (i=0; i<n; i++) {
+        for (j=0; j<n; j++) {
+            if (array[i][j] % 2 == 0)
+                return 1;
+            else
+                return 0;
+        }
+    }
+}
+int main() {
+    int array [100];
+    int n,i;
+
+    scanf("%d", &n);
+
+    for (i=0; i<n; i++) {
+        scanf("%d", &array[i]);
+    }
+
+    printf("%s", allEvenNumbers(array,n) ? "YES" : "NO");
+
+    return 0;
+
+}
+=============================================================================
+
+2. Multiple fiunctions // not solved
+
+
+Implement the following functions:
+
+    int digitsCount (int number) - a function that has one argument number and its result is the count of digits in that number.
+        If number is 12345, the result would be 5.
+    int getHalfOf (int number, char part) - a function that has two arguments: number and part. If part is L then the function result should be the left half of the number, but if part is R then the result should be the right part. If the number of digits of number is odd the middle digit is ignored.
+        if number is 1234 and part is L, the result should be 12
+        if number is 1234 and part is R, the result should be 34
+        if number is 12345 and part is L, the result should be 12
+        if number is 12345 and part is R, the result shoud be 45
+    void printInRange (int a, int b, char part) - a function that should print all the numbers in the range from a to b whose left or right part (depending on the argument part) is divisible by the count of digits of the number.
+        for example, if one of the numbers in the range is 1200 and part is L (left), then 12 is divisible by 4 (the count of digits), so 1200 should be printed.
+
+
+#include<stdio.h>
+#include<math.h>
+int digitsCount (int number) {
+    int counter = 0;
+    while (number) {
+        
+        number/=10;
+        counter++;
+        
+    }
+    return counter;
+}
+
+int getHalfOf (int number, char part) {
+    int d=10;
+    d=pow(d,digitsCount(number)/2);
+
+
+    if (part == 'R') {
+       number=number%d;
+    }
+
+    if (part == 'L') {
+       number=number/d;
+    }
+
+    if (digitsCount(number) % 2 != 0) {
+       d=d*10;
+    }
+	return number;
+}
+
+
+void printInRange (int a, int b, char part) {
+    int i;
+    for (i=a; i<=b; i++) {
+            if (getHalfOf(i,part)%digitsCount(i) == 0)
+            printf("%d\n",i);
+        }
+}
+int main () {
+
+int a,b;
+
+scanf("%d %d", &a, &b);
+
+printf("LEFT PARTS TEST:\n");
+printInRange(a,b,'L');
+
+printf("RIGHT PARTS TEST:\n");
+printInRange(a,b,'R');
+
+    return 0;
+        }
+=============================================================================
+
+3. Triangle
+
+
+
+Write a function printTriangle (int n) that will print a triangle of the symbols * and - with side sizes n.
+
+Example: 
+n=5
+
+Output:
+*
+**
+*-*
+*--*
+*****
+
+#include<stdio.h>
+
+int printTriangle (int n) {
+    int i,j;
+    for(i=0; i<=n; i++)  {
+        for(j=0; j<i; j++) {
+            if (j>=1&&j < i-1 && i>2 && i<n)
+
+                printf("-");
+            else
+                printf("*");
+
+        }
+        printf("\n");
+
+    }
+}
+int main () {
+
+    int n;
+    scanf("%d", &n);
+    printTriangle(n);
+
+    return 0;
+
+}
+=============================================================================
+
+8) Recursion
+
+1. Count of even digits
+
+
+Write a recursive function countOfEvenDigits that has one argument, an integer n, and the result of the function is the count of the even digits in the number n.
+
+Example:
+n = 12345
+
+countOfEvenDigits(n) = 2 (2 and 4 are even digits in this number)
+
+Then, write a recursive function readNumbers that has one argument, an integer n and does not return anything. Instead this function needs to read n numbers from SI and for each number, print to standard output the count of the even digits in the number.
+
+
+#include <stdio.h>
+
+int countOfEvenDigits (int n) {
+	
+  
+    if(n==0)
+        return 0;
+    
+   	else if ((n%10)%2==0)            
+	return 1+countOfEvenDigits(n/10);
+    else
+       return countOfEvenDigits(n/10);
+    
+}
+
+void readNumbers (int n) {
+	int k;
+    if (n==0)
+        return;
+    
+    else {
+        scanf("%d",&k);
+    printf("%d\n",countOfEvenDigits(k));
+    }
+    return readNumbers(n-1);
+    }
+
+
+
+
+int main () {
+  	
+    int n;
+    scanf("%d",&n);
+    
+    readNumbers(n);
+
+	
+        return 0;
+      
+}
+=============================================================================
+2.Print form
+
+
+Write a fully recursive function printForm(n) that for an argument n (n >= 0) will print a form from the signs * and #. You can use extra functions, but they all have to be recursive!
+
+Example forn=4.
+
+####
+***
+##
+*
+
+Example for n=3.
+
+***
+##
+*
+
+
+#include<stdio.h>
+int hashtag (int n) {
+    if(n==0){
+  	printf("\n");
+   	return 0;
+    }
+    else {
+        printf("#");
+    return hashtag(n-1);
+}
+}
+
+
+
+int stars (int n) {
+    if (n==0) {
+    	printf("\n");
+        return 0;
+    }
+    else {
+    	printf("*");
+        return stars(n-1);
+    }
+
+}
+
+
+void kilim(int n) {
+    if (n==0)
+        return;
+    else {
+        if (n%2==0){
+        	hashtag(n);
+            return kilim(n-1);
+        }
+        if (n%2!=0){
+        	stars(n);
+            return kilim(n-1);
+        }    
+    }
+     
+    }
+        
+int main() {
+
+  int n;
+  scanf("%d", &n);
+  kilim(n);
+
+  return 0;
+}
+
+=============================================================================
+3.Ascending array
+
+
+Write a recursive function ascending that has two arguments:
+
+    an array of integers
+    number n that represents the size of the array
+
+and its result is an integer:
+
+    1 if the array is sorted in ascending order
+    0 otherwise
+
+Examples:
+
+Array = {1,2,3,4,5,6}    
+Output = 1
+
+
+Array = {1,1,2,2,0,0}    
+Output = 0
+
+#include <stdio.h>
+
+int ascending (int a[], int n) {
+
+    if(a[n-1]<=a[n-2])
+        return 0;
+  	else
+        return 1;
+    
+    
+     return ascending(a,n-1);
+}
+    
+int main () {
+int n;
+    scanf("%d",&n);
+int b[n];
+for (int i=0;i<n; i++)
+    scanf("%d",&b[i]);
+
+	if (ascending(b,n))
+        printf("YES");
+    else
+        printf("NO");
+	    
+return 0;
+}
+            
+=============================================================================
+    
+ 9) Pointers and strings
+ 
+ 1.Mathematical operations
+ 
+    void increment (int a) - function that will increment the value of a by 1.
+    void decrement (int a) - function that will decrement the value of a by 1.
+    void compare (int a, int b, char operator, int result) - function that will do a specific comparison between a and b, based on the value of operator, and the result from the comparison will be saved in result. The operator can be:
+        >
+        <
+        = (stands for ==)
+
+#include <stdio.h>
+#include <string.h>
+
+void increment(int *a){
+*(a)=*(a)+1;
+
+}
+void decrement (int *a){
+*(a)=*(a)-1;
+}
+void compare (int a, int b, char operations, int *result){
+   if(operations=='>') *result=1;
+    if(operations=='<') *result=0;
+    if(operations=='=') *result=0;
+}
+int main () {
+    
+    int a,b,result;
+    
+    scanf("%d %d", &a, &b);
+    
+    increment(&a);
+    printf("Incremented a: %d\n", a); 
+    decrement(&b);
+    printf("Decremented b: %d\n", b); 
+    
+    char * operations = "><=";
+    
+    int i;
+    for (i=0;i<strlen(operations);i++) {
+       compare ( a, b, operations[i], &result);
+        printf("%d %c %d -> %d\n", a, operations[i], b, result);
+    }
+
+	return 0;
+}
+ =============================================================================
+ 2.Normalize and sort
+ 
+
+Write the following functions that will work with arrays of decimal numbers (floats):
+
+    float max (float * array, int n) - function whose result is the max of the array
+    float min (float * array, int n) - function whose result is the min of the array
+
+    void normalize (float * array, int n)- function that does not return a result, but instead - the function normalizes each element in the array using the formula:
+
+    x = (x-min(niza)) / (max(niza) - min(niza))
+
+    void sort (float * array, int n)- function that will sort the array in descending order!
+
+**Do not change the main function and do not use operator [ ] to access an element from an array!**
+
+#include<stdio.h>
+float max (float * array, int n) {
+    int i;
+    float max=(*(array));
+    for(i=0; i<n; i++) {
+        if( (*(array+i))>max )
+            max=(*(array+i));
+
+    }
+    return max;
+
+}
+
+float min (float * array, int n) {
+    int i;
+    float min=(*(array));
+    for(i=0; i<n; i++) {
+        if( (*(array+i))<min )
+            min=(*(array+i));
+    }
+    return min;
+}
+
+void normalize (float * array, int n) {
+    int i;
+    float mini,maxi;
+    float x;
+    mini= min(array,n);
+    maxi=max(array,n);
+    for(i=0; i<n; i++) {
+        x=*(array+i);
+        x=(x-mini) / (maxi-mini);
+        *(array+i)=x;
+    }
+}
+
+void sort (float * array, int n) {
+    int i,j;
+        float a;
+    for (i = 0; i < n; ++i) {
+        for (j = i + 1; j < n; ++j) {
+            if (*(array+i) < *(array+j)) {
+                a = *(array+i);
+                *(array+i) = *(array+j);
+                *(array+j) = a;
+            }
+        }
+    }
+}
+int main () {
+    
+    float array [200];
+    int i,n;
+    
+    scanf("%d", &n);
+    
+    for (i=0;i<n;i++) {
+        scanf("%f", &array[i]);
+        
+    }
+    
+    printf("MAX -> %.3f\n", max(array,n));
+    printf("MIN -> %.3f\n", min(array,n));
+    
+    normalize(array,n);
+    sort(array,n);
+    
+     for (i=0;i<n;i++) {
+        printf("%.3f ", array[i]);
+        
+    }
+    
+    return 0;
+
+}
+ =============================================================================
+ 3.Relative frequency of a letter
+ 
+Write a function leterFrequency (char * text, char letter) that for a given letter will print information about the relative frequency of that letter in the string text (both as lower and as an upper letter). The text is limited to maximum 1000 chars.
+
+A relative frequency of a letter is calculated as the quotient between the count of occurrences of the letter and the total number of letters in the text.
+
+
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+int leterFrequency(char * text, char letter) {
+    int counter=0, counter1=0;
+    int digits=0;
+    float resulta=0;
+    float resultA=0;
+    while(*(text) != '\0') {
+        if(*(text)==tolower(letter))
+            counter++;
+        if(*(text)==toupper(letter))
+            counter1++;
+        if(isalpha(*text))
+            digits++;
+        text++;
+    }
+    resulta=((float)counter / digits)*100;
+    resultA=((float)counter1 / digits)*100;
+    printf("%c -> %.3f%%\n",tolower(letter),resulta);
+    printf("%c -> %.3f%%",toupper(letter),resultA);
+}
+int main() {
+    char str[1000];
+    char c;
+
+    gets(str);
+    c=getchar();
+    leterFrequency(str,c);
+}
+
+=================================================================================
+
